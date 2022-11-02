@@ -1,0 +1,103 @@
+@use "components/mixins" as *;
+@use "config/variables" as *;
+
+header {
+    position: relative;
+    overflow: hidden;
+    @include flex(column, center, center);
+    padding: 20px;
+    padding-bottom: 100px;
+    @include breakpoints(mobile) {
+        @include flex(row, space-around, center);
+    }
+    .logo {
+        font-size: 26px;
+        font-family: $logo-font;
+        text-transform: uppercase;
+        color: $hard-color;
+    }
+    .mobile-nav {
+        @include flex(column, space-around, center);
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        z-index: 100;
+        background-color: $hard-color;
+        transition: $trans;
+        a {
+            color: $w-color;
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 1px;
+                background-color: $w-color;
+                transition: $trans;
+            }
+            &:hover::before {
+                width: 100%;
+            }
+        }
+        &.links-slide {
+            right: 0;
+        }
+    }
+    nav {
+        @include breakpoints(mobile) {
+            display: none;
+        }
+        width: 800px;
+        @include flex(row, space-around, center);
+        a {
+            position: relative;
+            text-transform: uppercase;
+            color: $hard-color;
+            margin-top: 20px;
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 1px;
+                background-color: $hard-color;
+                transition: $trans;
+            }
+            &:hover::before {
+                width: 100%;
+            }
+        }
+    }
+    .mobile-links {
+        display: none;
+        background: none;
+        width: 25px;
+        cursor: pointer;
+        transition: $trans;
+        z-index: 105;
+        &.active span:first-child {
+            transform: translateY(9px) rotate(50deg);
+            background-color: $w-color;
+        }
+        &.active span:last-child {
+            transform: rotate(-410deg);
+            background-color: $w-color;
+        }
+        span {
+            display: block;
+            height: 3px;
+            margin-bottom: 6px;
+            background-color: $hard-color;
+            transition: $trans;
+        }
+        @include breakpoints(mobile) {
+            display: block;
+        }
+    }
+}

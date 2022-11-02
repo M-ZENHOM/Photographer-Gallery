@@ -1,0 +1,44 @@
+@use "components/mixins" as *;
+@use "config/variables" as *;
+
+footer {
+    height: 7vh;
+    @include breakpoints(mobile) {
+        & {
+            height: 10vh;
+        }
+    }
+    background-color: $sec-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .copyrights {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $w-color;
+        & span {
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+        .zenhomSocials {
+            text-align: center;
+            margin-top: 5px;
+            a {
+                margin-left: 15px;
+                color: $w-color;
+                font-size: 17px;
+                &:hover:first-child {
+                    color: #1d9bf0;
+                }
+                &:hover:nth-child(2) {
+                    color: #d400c3;
+                }
+                &:hover:last-child {
+                    color: #24292f;
+                }
+            }
+        }
+    }
+}
